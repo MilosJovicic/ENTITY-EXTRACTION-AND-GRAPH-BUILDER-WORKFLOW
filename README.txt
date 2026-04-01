@@ -3,7 +3,7 @@ ENTITY EXTRACTION AND GRAPH BUILDER WORKFLOW
 
 Overview
 --------
-This project uses Temporal to process raw emails from `emails.csv` (Enron dataset from Kaggle), extract
+This project uses Temporal to process raw emails from `emails.csv`, extract
 entities and relationships, and write the result into a Neo4j knowledge graph.
 
 The code is organized around one Temporal workflow:
@@ -168,8 +168,11 @@ PROJECT LAYOUT
 |-- requirements.txt
 |   Python dependencies for Temporal, GLiNER, PydanticAI, and Neo4j.
 |
+|-- .env.example
+|   Safe template for the environment variables required by the project.
+|
 `-- .env
-    Environment variables for external services.
+    Local-only environment variables for external services.
 
 
 KEY DATA OBJECTS
@@ -217,16 +220,18 @@ HOW TO RUN
 1. Install dependencies:
    `pip install -r requirements.txt`
 
-2. Make sure Temporal is running on:
+2. Create a local `.env` from `.env.example` and fill in your real credentials.
+
+3. Place `emails.csv` in the project root.
+   The dataset is expected locally and is not committed to GitHub.
+
+4. Make sure Temporal is running on:
    `localhost:7233`
 
-3. Configure required environment variables in `.env`
-   (for example Neo4j credentials and any LLM provider settings).
-
-4. Start the worker:
+5. Start the worker:
    `python worker.py`
 
-5. In a second terminal, start workflows:
+6. In a second terminal, start workflows:
    `python starter.py`
 
 
@@ -237,4 +242,3 @@ DEFAULT EXECUTION SETTINGS
 - Workflow entrypoint: `EmailProcessingWorkflow.run`
 - Starter batch size: `5` emails per run
 - Workflow input model: `EmailProcessingInput`
-
