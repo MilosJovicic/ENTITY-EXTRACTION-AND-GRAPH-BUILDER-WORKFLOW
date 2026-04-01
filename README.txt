@@ -3,7 +3,7 @@ ENTITY EXTRACTION AND GRAPH BUILDER WORKFLOW
 
 Overview
 --------
-This project uses Temporal to process raw emails from `emails.csv`, extract
+This project uses Temporal to process raw emails from `emails.csv` (Enron dataset from Kaggle), extract
 entities and relationships, and write the result into a Neo4j knowledge graph.
 
 The code is organized around one Temporal workflow:
